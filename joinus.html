@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us Form</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    
+    <div class="form-container">
+      
+        <form action="process_form.php" method="post" enctype="multipart/form-data">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="position">Select Position:</label>
+            <select id="position" name="position">
+                <option value="ui-ux-designer intern">UI/UX Designer</option>
+                <option value="content-writer intern">Content Writer Intern</option>
+                <option value="subject-expert">Subject Expert</option>
+                <option value="Front-end developer">Front-end developer</option>
+                <option value="Backend Developer">Backend Developer</option>
+                <!--  more options  -->
+            </select>
+
+            <label for="cv">Upload your CV:</label>
+            <input type="file" id="cv" name="cv" accept=".pdf, .doc, .docx">
+
+            <label for="reason">Why do you want to join us?</label>
+            <textarea id="reason" name="reason" rows="4" required></textarea>
+
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

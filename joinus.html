@@ -1,87 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join Us - Form</title>
-    <link rel="stylesheet" href="form.css">
-</head>
-<body>
-    <div class="form-container">
-        <form id="joinUsForm" action="process_form.php" method="POST">
-            <label for="name">Your Full Name:</label>
-            <input type="text" id="name" name="name" required>
+    <link rel="stylesheet" href="form.css" />
+  </head>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+  <body>
+    <h1>Welcome to the Join Us Form!</h1>
+    <form
+      action="/process_form.php"
+      name="joinUsForm"
+      onsubmit="return validateForm()"
+      method="post"
+    >
+      <div class="formdesign" id="name">
+        Full Name: <input type="text" name="name" required /><b
+          ><span class="formerror"> </span
+        ></b>
+      </div>
 
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" required>
+      <div class="formdesign" id="email">
+        Email: <input type="email" name="email" required /><b
+          ><span class="formerror"> </span
+        ></b>
+      </div>
 
-            <label for="position">Select Position:</label>
-            <select id="position" name="position" required>
-                <option value="" disabled selected>Select a position</option>
-                <option value="ui-ux-designer-intern">UI/UX Designer Intern</option>
-                <option value="content-writer-intern">Content Writer Intern</option>
-                <option value="subject-expert">Subject Expert</option>
-                <option value="front-end-developer">Front-end Developer</option>
-                <option value="backend-developer">Backend Developer</option>
-            </select>
+      <div class="formdesign" id="phone">
+        Phone Number: <input type="tel" name="phone" required /><b
+          ><span class="formerror"></span
+        ></b>
+      </div>
 
-            <label for="cv">Upload your CV:</label>
-            <input type="file" id="cv" name="cv" required>
+      <div class="formdesign" id="position">
+        Select Position:
+        <select name="position" required>
+          <option value="" disabled selected>Select a position</option>
+          <option value="ui-ux-designer-intern">UI/UX Designer Intern</option>
+          <option value="content-writer-intern">Content Writer Intern</option>
+          <option value="subject-expert">Subject Expert</option>
+          <option value="front-end-developer">Front-end Developer</option>
+          <option value="backend-developer">Backend Developer</option>
+        </select>
+        <b><span class="formerror"></span></b>
+      </div>
 
-            <label for="reason">Why do you want to join us?</label>
-            <textarea id="reason" name="reason" rows="4" required></textarea>
+      <div class="formdesign" id="cv">
+        Upload your CV: <input type="file" name="cv" required /><b
+          ><span class="formerror"></span
+        ></b>
+      </div>
 
-            <button type="submit" class="btn">Submit</button>
-        </form>
-    </div>
+      <div class="formdesign" id="reason">
+        Why do you want to join us?
+        <textarea name="reason" rows="4" required></textarea>
+        <b><span class="formerror"></span></b>
+      </div>
+
+      <input class="but" type="submit" value="Submit" />
+    </form>
 
     <script>
-        // Form validation function
-        document.getElementById("joinUsForm").addEventListener("submit", function (e) {
-            // Validation for name
-            const nameInput = document.getElementById("name");
-            if (nameInput.value.trim() === "") {
-                e.preventDefault();
-                alert("Name is required");
-                nameInput.focus();
-                return false;
-            }
+      function clearErrors() {
+        errors = document.getElementsByClassName("formerror");
+        for (let item of errors) {
+          item.innerHTML = "";
+        }
+      }
 
-            // Validation for email
-            const emailInput = document.getElementById("email");
-            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-            if (!emailPattern.test(emailInput.value)) {
-                e.preventDefault();
-                alert("Invalid email address");
-                emailInput.focus();
-                return false;
-            }
+      function seterror(id, error) {
+        element = document.getElementById(id);
+        element.getElementsByClassName("formerror")[0].innerHTML = error;
+      }
 
-            // Validation for phone number
-            const phoneInput = document.getElementById("phone");
-            if (phoneInput.value.trim() === "") {
-                e.preventDefault();
-                alert("Phone number is required");
-                phoneInput.focus();
-                return false;
-            }
+      function validateForm() {
+        var returnval = true;
+        clearErrors();
 
-            // Validation for CV upload (You may want to add specific validation for file types and size)
+        var name = document.forms["joinUsForm"]["name"].value;
+        if (name.length < 5) {
+          seterror("name", "*Length of name is too short");
+          returnval = false;
+        }
 
-            // Validation for the reason textarea
-            const reasonInput = document.getElementById("reason");
-            if (reasonInput.value.trim() === "") {
-                e.preventDefault();
-                alert("Please provide a reason for joining us");
-                reasonInput.focus();
-                return false;
-            }
+        if (name.length == 0) {
+          seterror("name", "*Length of name cannot be zero!");
+          returnval = false;
+        }
 
-            // You can add more specific validations as needed.
-        });
+        var email = document.forms["joinUsForm"]["email"].value;
+        if (email.length > 50) {
+          seterror("email", "*Email length is too long");
+          returnval = false;
+        }
+
+        var phone = document.forms["joinUsForm"]["phone"].value;
+        if (phone.length != 10) {
+          seterror("phone", "*Phone number should be of 10 digits!");
+          returnval = false;
+        }
+
+        // You can add more specific validation for other fields if needed.
+
+        return returnval;
+      }
     </script>
-</body>
+  </body>
 </html>

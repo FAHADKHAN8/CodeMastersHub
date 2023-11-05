@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,14 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>JavaScript Form Validation</title>
+    <title>Join Us</title>
     <link rel="stylesheet" href="form.css">
-
 </head>
 
 <body>
     <h1>JOIN US</h1>
-    <form aciton ="/myaction.php" name="myForm" onsubmit="return validateForm()" method="post">
+    <form action="/myaction.php" name="myForm" onsubmit="return validateForm()" method="post" enctype="multipart/form-data">
         <div class="formdesign" id="name">
             Name: <input type="text" name="fname" required><b><span class="formerror"> </span></b>
         </div>
@@ -23,19 +21,33 @@
         </div>
 
         <div class="formdesign" id="phone">
-            Phone: <input type="phone" name="fphone" required><b><span class="formerror"></span></b>
+            Phone: <input type="tel" name="fphone" required><b><span class="formerror"></span></b>
         </div>
 
-        <div class="formdesign" id="pass">
-            Password: <input type="password" name="fpass" required><b><span class="formerror"</span></b>
+        <div class="formdesign" id="position">
+            Select Position:
+            <select name="fposition" required>
+                <option value="">Select Position</option>
+                <option value="front-end-developer">Front-end Developer</option>
+                <option value="backend-developer">Backend Developer</option>
+                <option value="data-analyst">Data Analyst</option>
+                <option value="content-writer">Content Writer</option>
+                <option value="software-engineer">Software Engineer</option>
+            </select>
+            <b><span class="formerror"> </span></b>
         </div>
 
-        <div class="formdesign" id="cpass">
-            Confirm Password: <input type="password" name="fcpass" required><b><span class="formerror"></span></b>
+        <div class="formdesign" id="cv">
+            Upload your CV: <input type="file" name="fcv" accept=".pdf, .doc, .docx" required>
+        </div>
+
+        <div class="formdesign" id="reason">
+            Why do you want to join us?
+            <textarea name="freason" rows="4" required></textarea>
+            <b><span class="formerror"> </span></b>
         </div>
 
         <input class="but" type="submit" value="Submit">
-
     </form>
 </body>
 <script src="form.js"></script>

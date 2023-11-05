@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join Us Form</title>
+    <title>Join Us - Form</title>
     <link rel="stylesheet" href="form.css">
 </head>
 <body>
-    
     <div class="form-container">
-      
-        <form action="process_form.php" >
-            <label for="name">Your Name:</label>
+        <form id="joinUsForm" action="process_form.php" method="POST">
+            <label for="name">Your Full Name:</label>
             <input type="text" id="name" name="name" required>
 
             <label for="email">Email:</label>
@@ -21,17 +19,17 @@
             <input type="tel" id="phone" name="phone" required>
 
             <label for="position">Select Position:</label>
-            <select id="position" name="position">
-                <option value="ui-ux-designer intern">UI/UX Designer</option>
-                <option value="content-writer intern">Content Writer Intern</option>
+            <select id="position" name="position" required>
+                <option value="" disabled selected>Select a position</option>
+                <option value="ui-ux-designer-intern">UI/UX Designer Intern</option>
+                <option value="content-writer-intern">Content Writer Intern</option>
                 <option value="subject-expert">Subject Expert</option>
-                <option value="Front-end developer">Front-end developer</option>
-                <option value="Backend Developer">Backend Developer</option>
-               
+                <option value="front-end-developer">Front-end Developer</option>
+                <option value="backend-developer">Backend Developer</option>
             </select>
 
             <label for="cv">Upload your CV:</label>
-            <input type="file" id="cv" name="cv" >
+            <input type="file" id="cv" name="cv" required>
 
             <label for="reason">Why do you want to join us?</label>
             <textarea id="reason" name="reason" rows="4" required></textarea>
@@ -39,5 +37,51 @@
             <button type="submit" class="btn">Submit</button>
         </form>
     </div>
+
+    <script>
+        // Form validation function
+        document.getElementById("joinUsForm").addEventListener("submit", function (e) {
+            // Validation for name
+            const nameInput = document.getElementById("name");
+            if (nameInput.value.trim() === "") {
+                e.preventDefault();
+                alert("Name is required");
+                nameInput.focus();
+                return false;
+            }
+
+            // Validation for email
+            const emailInput = document.getElementById("email");
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailPattern.test(emailInput.value)) {
+                e.preventDefault();
+                alert("Invalid email address");
+                emailInput.focus();
+                return false;
+            }
+
+            // Validation for phone number
+            const phoneInput = document.getElementById("phone");
+            if (phoneInput.value.trim() === "") {
+                e.preventDefault();
+                alert("Phone number is required");
+                phoneInput.focus();
+                return false;
+            }
+
+            // Validation for CV upload (You may want to add specific validation for file types and size)
+
+            // Validation for the reason textarea
+            const reasonInput = document.getElementById("reason");
+            if (reasonInput.value.trim() === "") {
+                e.preventDefault();
+                alert("Please provide a reason for joining us");
+                reasonInput.focus();
+                return false;
+            }
+
+            // You can add more specific validations as needed.
+        });
+    </script>
 </body>
 </html>

@@ -1,17 +1,26 @@
-document.addEventListener('DOMContentLoaded', function () {
-    var articles = document.querySelectorAll('.article h3');
-    articles.forEach(function (article) {
-        article.style.fontSize = '28px'; 
-        article.style.color = 'black'; 
-    });
+document.addEventListener("DOMContentLoaded", function () {
 
-    var articleContainers = document.querySelectorAll('.article');
-    articleContainers.forEach(function (container) {
-        container.addEventListener('mouseenter', function () {
-            container.style.backgroundColor = '#f0f0f0'; 
-        });
-        container.addEventListener('mouseleave', function () {
-            container.style.backgroundColor = 'white'; 
-        });
-    });
+    const header = document.querySelector(".header");
+    const changeColorButton = document.getElementById("changeColorButton");
+
+
+    function changeHeaderColor() {
+
+        const randomColor = getRandomColor();
+        header.style.backgroundColor = randomColor;
+    }
+
+    function getRandomColor() {
+        const letters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+
+    if (changeColorButton) {
+        changeColorButton.addEventListener("click", changeHeaderColor);
+    }
 });

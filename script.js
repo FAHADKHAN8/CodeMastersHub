@@ -53,30 +53,26 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(nextSlide, 3000);
 });
 
-window.addEventListener("scroll", function () {
-    var scrollToTopButton = document.getElementById("scrollToTopButton");
-    if (window.scrollY > 300) {
-        scrollToTopButton.style.display = "block";
-    } else {
-        scrollToTopButton.style.display = "none";
-    }
-});
 
-  function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+
+function scrollToTop() {
+    document.documentElement.scrollTop = 0;
+
 }
 
-// window.addEventListener("scroll", function () {
-//     var scrollToTopButton = document.getElementById("scrollToTopButton");
-//     if (window.scrollY > 300) {
-//         scrollToTopButton.style.display = "block";
-//     } else {
-//         scrollToTopButton.style.display = "none";
-//     }
-// });
+
+scrollToTopBtn.addEventListener("click", scrollToTop);
+
+
+window.addEventListener("scroll", function () {
+    if (document.documentElement.scrollTop > 300 || document.body.scrollTop > 300) {
+        scrollToTopBtn.style.display = "block";
+    } else {
+        scrollToTopBtn.style.display = "none";
+    }
+});
 
 
 

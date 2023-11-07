@@ -21,9 +21,6 @@
   opacity: 1;
 }
 
-#scrollToTopButton:hover {
-  background-color: #631f1f;
-}
 
 .social-media-sharing {
   display: flex;
@@ -36,6 +33,7 @@
   width: 30px;
   height: 30px;
 }
+
 
 .header {
   background-color: #4c074c;
